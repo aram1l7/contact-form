@@ -147,7 +147,7 @@ export default function ContactUs() {
         sm={4}
         md={7}
         sx={{
-          backgroundImage: "url(https://source.unsplash.com/random)",
+          backgroundImage: `url("/images/contact-us.jpg")`,
           backgroundRepeat: "no-repeat",
           backgroundColor: (t) =>
             t.palette.mode === "light"
@@ -198,6 +198,20 @@ export default function ContactUs() {
               placeholder="Email"
               error={error.email}
               helperText={error.email?.[0]}
+            />
+            <TextField
+              margin="normal"
+              fullWidth
+              autoFocus
+              label="Target email"
+              id="target_email"
+              name="targetEmail"
+              value={formData.targetEmail ?? ""}
+              onChange={handleChange}
+              autoComplete="email"
+              placeholder="Target email"
+              error={error.targetEmail}
+              helperText={error.targetEmail?.[0]}
             />
             <TextField
               margin="normal"

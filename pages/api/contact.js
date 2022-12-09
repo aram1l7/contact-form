@@ -16,6 +16,12 @@ export default async function (req, res) {
   if (!!req.body["email"] && !validEmail.test(req.body["email"])) {
     errors["email"] = ["Email address is invalid"];
   }
+  if (!req.body["targetEmail"] || req.body["targetEmail"].length < 1) {
+    errors["targetEmail"] = ["Target email is required"];
+  }
+  if (!!req.body["targetEmail"] && !validEmail.test(req.body["targetEmail"])) {
+    errors["targetEmail"] = ["Target email address is invalid"];
+  }
   if (!!req.body["message"] && req.body["message"].length > 200) {
     errors["message"] = ["Message should be maximum 200 characters long"];
   }
@@ -43,7 +49,7 @@ export default async function (req, res) {
 
   const mailData = {
     from: req.body.email,
-    to: "gamescience1884@gmail.com",
+    to: req.body.targetEmail,
     subject: `Message From ${req.body.name}`,
     text: `New message from ${req.body.email}`,
     html: `<div>
